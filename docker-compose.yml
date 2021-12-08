@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  # MySQL
+  mysql:
+    image: mysql:latest
+    platform: linux/amd64 # M1の場合はこちらを指定
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mysql
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    volumes:
+      - ./mysql_db:/var/lib/mysql
+    ports:
+      - 3306:3306
+
+  # PostgreSQL
+  postgres:
+    image: postgres:latest
+    container_name: postgres_db
+    environment:
+      POSTGRESL_ROOT_PASSWORD: root
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - 5432:5432
+    volumes:
+      - ./postgres_db:/var/lib/postgresql
